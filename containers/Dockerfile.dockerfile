@@ -41,4 +41,4 @@ RUN ./x.py build --compiler=clang \
 # 运行时
 FROM busybox AS runtime
 COPY source-src/kvrocks.conf /var/lib/kvrocks/kvrocks.conf
-COPY --from=builder /kvrocks/build/kvrocks /bin/
+COPY --from=builder /source/build/kvrocks /bin/
