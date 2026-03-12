@@ -30,6 +30,7 @@ WORKDIR /source/
 COPY source-src/ ./
 RUN ./x.py build --compiler=clang \
     -DCMAKE_EXE_LINKER_FLAGS="-static" \
+    -DCMAKE_CXX_STANDARD_LIBRARIES="-latomic" \
     -DENABLE_STATIC_LIBSTDCXX=ON \
     -DENABLE_LUAJIT=OFF \
     -DDISABLE_JEMALLOC=ON \
