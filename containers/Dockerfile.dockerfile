@@ -39,7 +39,7 @@ RUN ./x.py build --compiler=clang \
     -j $(nproc)
 
 # 运行时
-FROM busybox AS runtime
+FROM scratch AS runtime
 COPY source-src/kvrocks.conf /var/lib/kvrocks/kvrocks.conf
 COPY --from=builder /source/build/kvrocks /bin/
 COPY rootfs/ /
