@@ -22,13 +22,20 @@ RUN apk add --no-cache --virtual .build-deps \
                 python3 \
                 openssl-dev \
                 clang \
+                openssl-dev \
+                openssl-libs-static \
                 linux-headers
 
 WORKDIR /source/
 COPY source-src/ ./
-RUN ./x.py build --compiler=clang -DENABLE_OPENSSL=ON -DENABLE_STATIC_LINK=ON -DPORTABLE=1 -DCMAKE_BUILD_TYPE=Release -j $(nproc)
+RUN ./x.py build --compiler=clang \
+    -DCMAKE_EXE_LINKER_FLAGS="-static" \
+    -DENABLE_STATIC_LIBSTDCXX=ON \
+    -DPORTABLE=1 \
+    -DCMAKE_BUILD_TYPE=Release \
+    -j $(nproc)
 
 # 运行时
 FROM busybox AS runtime
-COPY source-src/kvrocks.conf /var/lib/kvrocks/
+COPY source-src/kvrocks.conf /var/lib/kvrocks/kvrocks.conf
 COPY --from=builder /kvrocks/build/kvrocks /bin/
