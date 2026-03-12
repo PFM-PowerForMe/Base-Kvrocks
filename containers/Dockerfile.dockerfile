@@ -32,7 +32,7 @@ RUN ./x.py build --compiler=clang \
     -DCMAKE_EXE_LINKER_FLAGS="-static" \
     -DENABLE_STATIC_LIBSTDCXX=ON \
     -DENABLE_LUAJIT=OFF \
-    -DISABLE_JEMALLOC=ON \
+    -DDISABLE_JEMALLOC=ON \
     -DPORTABLE=1 \
     -DCMAKE_BUILD_TYPE=Release \
     -j $(nproc)
