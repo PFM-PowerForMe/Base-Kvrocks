@@ -1,0 +1,5 @@
+#!/command/execlineb -P
+with-contenv
+s6-notifyoncheck
+s6-setuidgid kvrocks
+/bin/kvrocks -c /var/lib/kvrocks/kvrocks.conf --dir /var/lib/kvrocks --pidfile /run/kvrocks/kvrocks.pid --bind 127.0.0.1

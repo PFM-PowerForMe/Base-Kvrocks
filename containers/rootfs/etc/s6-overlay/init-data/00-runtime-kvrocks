@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+set -e
+
+mkdir -pv /run/kvrocks
+chown kvrocks:kvrocks -R /run/kvrocks
+mkdir -pv /var/lib/kvrocks
+chown kvrocks:kvrocks -R /var/lib/kvrocks
